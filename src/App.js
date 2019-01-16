@@ -12,40 +12,23 @@ class App extends Component {
     }
     this.handleChange=this.handleChange.bind(this)
     this.handleSubmit=this.handleSubmit.bind(this)
-    this.updateTime=this.updateTime.bind(this)
     this.timer=this.timer.bind(this)
-    this.clear=this.clear.bind(this)
-    this.start=this.start.bind(this)
-    this.toggler=this.toggler.bind(this)
-  }
-  toggler(e){
-    var items,item
-    items=[...this.state.projects];
-		console.log("​App -> clear -> items", items)
-    item={...items[e.id]};
-      
-        item.active=false
-        this.setState({
-          projects:items
-        })
-
+    this.toggleTimer=this.toggleTimer.bind(this)
+    this.convertTimeToHuman=this.convertTimeToHuman.bind(this)
   }
   
-  handleChange(e){
+handleChange(e){
     this.setState({
       input:e.target.value
     })
-  }
-  handleSubmit(e){
+}
+handleSubmit(e){
     e.preventDefault()
-    let projects=this.state.projects
-    let id
-    if (projects.length > 0) {
-      id = projects[projects.length - 1].id + 1
-    } else {
-      id = 0
-    }
-    let array=this.state.projects;
+    let projects,array,id
+    projects=this.state.projects
+    array=this.state.projects;
+
+    projects.length>0 ? id = projects[projects.length - 1].id + 1 : id = 0
     array.push({id,
       name:this.state.input,
       time:0,
@@ -53,15 +36,12 @@ class App extends Component {
       active:true
     })
     this.setState({
-      projects:array
-    })
-    this.setState({
+      projects:array,
       input:''
     })
-    this.timer(id)
-    
-  }
-    timer(id){
+    this.timer(id)  }
+
+timer(id){
     let seconds,items,item,intervalID;
     
     intervalID=setInterval(()=>{
@@ -79,13 +59,12 @@ class App extends Component {
       
     },1000)
   } 
-  clear(project){
+  toggleTimer(project){
     var items,item
     items=[...this.state.projects];
     item=items[project.id]
     clearInterval(project.intervalID)
     if(project.active){
-			console.log("​App -> clear -> project.intervalID", project.intervalID)
       item.active=!item.active
     } else {
       item.active=!item.active
@@ -94,35 +73,31 @@ class App extends Component {
     items[project.id]=item
     this.setState({
       projects:items
-    })
-    
-      }
-      
-    
+    })}
 
-  
-  start(id){
-    this.timer(id)
+  convertTimeToHuman(currentSeconds){
+    var timeHours,timeMinutes,timeSeconds,timeHoursMinutes;
+    timeHours=Math.floor(currentSeconds / 3600);    
+    timeMinutes=Math.floor((currentSeconds - (timeHours * 3600)) / 60);
+    timeSeconds=currentSeconds - (timeHours * 3600) - (timeMinutes * 60);
+
+    if (timeHours   < 10) {timeHours   = "0"+timeHours;}
+    if (timeMinutes < 10) {timeMinutes = "0"+timeMinutes;}
+    if (timeSeconds < 10) {timeSeconds = "0"+timeSeconds;}
+
+    timeHoursMinutes=timeHours+' : '+timeMinutes+' : '+timeSeconds;
   }
- updateTime(id){
-   this.setState({
-     projects:id
-   })
- }
+ 
   render() {
     return (
       <div className="App">
        <Projectsinput vals={this.state.input} handleChange={this.handleChange} handleSubmit={this.handleSubmit}  />
        {this.state.projects.map(e=> 
-       <ProjectItem 
-       
-       state={this.state}
-       current={e} 
-       update={this.updateTime}
-       clear={()=> this.clear(e)}
-       start={()=> this.start(e.id)}
-       toggler={()=>this.toggler(e)}
-       />)
+          <ProjectItem 
+          state={this.state}
+          current={e} 
+          toggleTimer={()=> this.toggleTimer(e)}
+          />)
         }
       </div>
     )
