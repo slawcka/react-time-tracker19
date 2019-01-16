@@ -1,22 +1,23 @@
+
+
 import React from 'react';
 
 const ProjectItem = (props) => {
-
-    return (
-        <div className='box'>
-         { props.projects.map(e=> {
-             
-              return (
-                  <h1>labas {e.time}</h1>
-              )
-          })}
-          
-          
-        </div>
-    );
-};
+    let item=props.current
+    let state=props.state
+   
+        return (
+            <div className={item.active ? 'item active':'item false'}>
+                  <h1>labas {item.time}</h1>
+               
+                <button onClick={props.clear}>{item.active? 'pause':'resume'}</button>
+            </div>
+        );
+    
+}
 
 export default ProjectItem;
+
 
 
 
