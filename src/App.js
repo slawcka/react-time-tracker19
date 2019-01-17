@@ -95,7 +95,10 @@ timer(id){
   render() {
     return (
       <div className="App">
-       <Projectsinput vals={this.state.input} handleChange={this.handleChange} handleSubmit={this.handleSubmit}  />
+      <h1 className='logo'>slavik</h1>
+      <div className="container">
+       <Projectsinput  vals={this.state.input} handleChange={this.handleChange} handleSubmit={this.handleSubmit}  />
+       <div className="items-list">
        {this.state.projects.map(e=> 
           <ProjectItem 
           state={this.state}
@@ -103,6 +106,9 @@ timer(id){
           toggleTimer={()=> this.toggleTimer(e)}
           />)
         }
+       </div>
+      
+      </div>
       </div>
     )
   }

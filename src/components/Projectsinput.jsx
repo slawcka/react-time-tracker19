@@ -2,12 +2,14 @@ import React from 'react';
 
 const Projectsinput = (props) => {
     return (
-        <div>
+        <div className="form">
             <h1>Enter your project</h1>
            
             <form onSubmit={props.handleSubmit}>
                 <input type="text" value={props.vals} onChange={props.handleChange}/>
-                <input type="submit" value='go'  />
+                <button type="submit"><i class="material-icons">
+keyboard_arrow_right
+</i></button>  
             </form>
              
         </div>
