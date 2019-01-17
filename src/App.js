@@ -32,6 +32,7 @@ handleSubmit(e){
     array.push({id,
       name:this.state.input,
       time:0,
+      humanTime:'00 : 00 : 00',
       intervalID:id,
       active:true
     })
@@ -51,11 +52,12 @@ timer(id){
       seconds++
       item.time=seconds
       item.intervalID=intervalID
-      
+      item.humanTime= this.convertTimeToHuman(seconds);
       items[id]=item
       this.setState({
         projects:items
       })
+     
       
     },1000)
   } 
@@ -86,6 +88,8 @@ timer(id){
     if (timeSeconds < 10) {timeSeconds = "0"+timeSeconds;}
 
     timeHoursMinutes=timeHours+' : '+timeMinutes+' : '+timeSeconds;
+		console.log("​convertTimeToHuman -> timeHoursMinutes", timeHoursMinutes)
+    return timeHoursMinutes
   }
  
   render() {
