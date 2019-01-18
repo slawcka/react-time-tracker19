@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/src/files/font-awesome-4.7.0
 
 # testing
 /coverage

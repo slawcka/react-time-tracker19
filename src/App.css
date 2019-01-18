@@ -5,11 +5,11 @@
   border-radius: 7px;
 }
 
-.form form button[type=submit] {
+.item-list__item button, .form form button[type=submit] {
   background: none;
   outline: none;
   border: none;
-  border-radius: 10px;
+  border-radius: 7px;
   cursor: pointer;
   color: gray;
 }
@@ -20,14 +20,30 @@
   font-size: 2em;
 }
 
+.item-list__item h3, .form form input[type=text] {
+  color: gray;
+  font-size: 1.5em;
+  font-weight: 100;
+}
+
 * {
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
   margin: 0;
-  box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+
+.App {
+  background: url("./files/bg.jpg");
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .logo {
@@ -36,48 +52,86 @@ body {
   margin: 20px 0;
 }
 
+.container {
+  display: flex;
+  flex-flow: column wrap;
+  width: 60vw;
+  min-height: 20vh;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 100px;
+  transition: min-height 1s cubic-bezier(0.6, -0.28, 0.74, 0.05);
+}
+
 .form {
   text-align: center;
-  width: 70%;
+  flex-basis: 100px;
   padding-bottom: 30px;
+  border-bottom: 1px solid lightgray;
 }
 .form form input[type=text] {
-  width: 100%;
+  text-align: center;
+  width: 80%;
 }
 .form form button[type=submit] {
   position: relative;
-  top: 7px;
-  margin-left: -40px;
+  top: 2px;
+  margin-left: -45px;
   transition: background 0.4s;
+  padding: 5px 7px;
 }
 .form form button[type=submit]:hover {
   background: #f2f2f2;
 }
 .items-list {
-  background: #f2f2f2;
-  min-height: 100px;
-  flex: 1 0 100px;
-}
-
-.App {
-  background: url("./files/bg.jpg");
-  width: 100%;
-  height: 100vh;
+  background: #FAFAFA;
+  min-height: 300px;
+  flex-basis: 100%;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
+  padding-top: 15px;
 }
 
-.container {
+.item-list__item {
   display: flex;
-  flex-flow: column wrap;
-  width: 60vw;
-  min-height: 30vh;
-  flex: 0 1 auto;
-  background: white;
-  border-radius: 10px;
   align-items: center;
+  background: white;
+  margin: 0 15px 15px 15px;
+  border-radius: 8px;
+  border-right: 10px solid #54BCCF;
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.13);
+  transition: border-right 0.3s;
+}
+.item-list__item > * {
+  flex: 1;
+}
+.item-list__item h3 {
+  flex: 3;
+  margin-left: 1em;
+}
+.item-list__item p {
+  flex: 3;
+  font-size: 1.5em;
+  color: #8aadce;
+}
+.item-list__item button i {
+  font-size: 3em;
+  color: #54BCCF;
+  transition: color 0.3s;
+}
+
+.item-list__item.false p {
+  color: lightgray;
+}
+
+.item-list__item.false button i {
+  color: #c685a7;
+  transition: color 0.3s;
+}
+
+.item-list__item.false {
+  border-right: 10px solid #c685a7;
+  transition: border-right 0.3s;
 }
 
 /*# sourceMappingURL=App.css.map */
