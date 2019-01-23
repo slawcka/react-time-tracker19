@@ -7,7 +7,7 @@ const Projectsinput = (props) => {
            
             <form onSubmit={props.handleSubmit}>
                 <input type="text" value={props.vals} onChange={props.handleChange}/>
-                <button type="submit"><i class="material-icons">
+                <button type="submit"><i className="material-icons">
 keyboard_arrow_right
 </i></button>  
             </form>

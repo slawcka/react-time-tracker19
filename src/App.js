@@ -15,6 +15,7 @@ class App extends Component {
     this.timer=this.timer.bind(this)
     this.toggleTimer=this.toggleTimer.bind(this)
     this.convertTimeToHuman=this.convertTimeToHuman.bind(this)
+    this.archiveItem=this.archiveItem.bind(this)
   }
   
 handleChange(e){
@@ -76,7 +77,20 @@ timer(id){
     this.setState({
       projects:items
     })}
+  archiveItem(project){
+    clearInterval(project.intervalID)
+    var items, current,itemsDeleted;  
+    current= project.id
+    console.log('current: ', current);
+    items=[...this.state.projects];
+    itemsDeleted=items.slice(current)
+    console.log('itemsDeleted: ', itemsDeleted);
 
+    this.setState({
+      projects:itemsDeleted
+    })
+
+  }
   convertTimeToHuman(currentSeconds){
     var timeHours,timeMinutes,timeSeconds,timeHoursMinutes;
     timeHours=Math.floor(currentSeconds / 3600);    
@@ -104,6 +118,7 @@ timer(id){
           state={this.state}
           current={e} 
           toggleTimer={()=> this.toggleTimer(e)}
+          archive={()=>this.archiveItem(e)}
           />)
         }
        </div>
