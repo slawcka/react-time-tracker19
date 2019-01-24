@@ -36,6 +36,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.archived {
+  display: none !important;
+}
+
 .App {
   background: url("./files/bg.jpg");
   width: 100%;

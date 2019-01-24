@@ -4,14 +4,14 @@ class ProjectItem extends Component {
     constructor(props){
         super(props);
         this.state={
-          input:'',
-          projects:[],
-          intervalID:''
+          
         }
-        this.timer=this.timer.bind(this)
-        this.toggleTimer=this.toggleTimer.bind(this)
+        //this.timer=this.timer.bind(this)
+        //this.toggleTimer=this.toggleTimer.bind(this)
+        //this.archiveItem=this.archiveItem.bind(this)
+
     }
-    timer(id){
+   /*  timer(id){
         let seconds,items,item,intervalID;
         
         this.intervalID=setInterval(()=>{
@@ -30,6 +30,7 @@ class ProjectItem extends Component {
           
         },1000)
       } 
+
       toggleTimer(project){
         var items,item
         items=[...this.state.projects];
@@ -45,13 +46,37 @@ class ProjectItem extends Component {
         this.setState({
           projects:items
         })}
+
+      archiveItem(project){
+        clearInterval(project.intervalID)
+        var items, current,itemsDeleted;  
+        current= project.id
+        console.log('current: ', current);
+        items=[...this.state.projects];
+        itemsDeleted=items.slice(current)
+        console.log('itemsDeleted: ', itemsDeleted);
+    
+        this.setState({
+          projects:itemsDeleted
+        })
+      } */
+    
+   /* TEMP
+  current.active ? 'item-list__item active':'item-list__item false' 
+   
+   
+   */ 
     render() {
         var {current}=this.props
         var props=this.props
+        let itemClass=['item-list__item'];
+        current.archived && itemClass.push('archived')
+        current.active && itemClass.push('active') 
+
     let resume=<i className="material-icons md-48"> play_circle_outline</i>
     let pause=<i className="material-icons">pause_circle_outline</i>
         return (
-            <div className={current.active ? 'item-list__item active':'item-list__item false'}>
+            <div className={itemClass.join(' ')}>
                 <h3>{current.name} </h3>
                 <p>{current.humanTime}</p>
                 <button onClick= {props.toggleTimer}>{current.active ? pause:resume} </button>
