@@ -34,7 +34,7 @@ body
     margin: 0 
     font-family: $roboto 
 
-.archived
+.hidden
     display: none !important
 
 .App
@@ -105,7 +105,7 @@ body
     border-radius: 8px
     border-right: 10px solid $main-blue
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.13)
-    transition: border-right 0.3s
+    transition: all 0.3s ease
     > *
         flex: 1
     h3 
@@ -133,7 +133,10 @@ body
 .item-list__item.false
     border-right: 10px solid $red
     transition: border-right 0.3s
-    
+
+.item-list__item.archived
+    transform: scale(0.5)    
+    transition: all 0.3s ease
 
     
 

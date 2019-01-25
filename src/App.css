@@ -36,7 +36,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.archived {
+.hidden {
   display: none !important;
 }
 
@@ -104,7 +104,7 @@ body {
   border-radius: 8px;
   border-right: 10px solid #54BCCF;
   box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.13);
-  transition: border-right 0.3s;
+  transition: all 0.3s ease;
 }
 .item-list__item > * {
   flex: 1;
@@ -136,6 +136,11 @@ body {
 .item-list__item.false {
   border-right: 10px solid #c685a7;
   transition: border-right 0.3s;
+}
+
+.item-list__item.archived {
+  transform: scale(0.5);
+  transition: all 0.3s ease;
 }
 
 /*# sourceMappingURL=App.css.map */
