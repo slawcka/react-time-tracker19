@@ -1,15 +1,21 @@
-//v1.0 
+// v2.0 error message veikia 
+// display absolute, componentas conditional jei state erroro tekstas ne tuscias 
+// projektai nepasinaikina, tik display : none 
+// display absolute, conditional 
+// display absolute, conditional. 
 import React, { Component } from "react";
 import "./App.css";
 import Projectsinput from "./components/Projectsinput";
 import ProjectItem from "./components/ProjectItem";
+import ErrorMessages from "./components/ErrorMessages";
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       input: "",
       projects: [],
-      intervalID: ""
+      intervalID: "",
+      errorMessage: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,6 +25,7 @@ class App extends Component {
     this.archiveItem = this.archiveItem.bind(this);
     this.archiveElement = this.archiveElement.bind(this);
     this.addLocalStorage = this.addLocalStorage.bind(this);
+    this.validator = this.validator.bind(this);
   }
 
   handleChange(e) {
@@ -27,6 +34,10 @@ class App extends Component {
     });
   }
   handleSubmit(e) {
+    if (this.validator()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     let projects, array, id;
     projects = this.state.projects;
@@ -51,7 +62,19 @@ class App extends Component {
     });
     this.timer(id);
   }
-
+  validator() {
+    const { input } = this.state;
+    if (input.length < 1) {
+      this.setState({ errorMessage: "to short..." });
+      return true;
+    } else if (input.length > 13) {
+      this.setState({ errorMessage: "to long..." });
+      return true;
+    } else {
+      this.setState({ errorMessage: "" });
+      return false;
+    }
+  }
   timer(id) {
     let seconds, items, item, intervalID;
 
@@ -163,16 +186,17 @@ class App extends Component {
             vals={this.state.input}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
-          />
+          >
+           {this.state.errorMessage && <ErrorMessages message={this.state.errorMessage} /> } 
+          </Projectsinput>
           <div className="items-list">
             {this.state.projects.map(e => (
               <ProjectItem
-                state={this.state}
                 current={e}
                 toggleTimer={() => this.toggleTimer(e)}
                 archive={() => this.archiveElement(e)}
               />
-            ))} 
+            ))}
           </div>
         </div>
       </div>
