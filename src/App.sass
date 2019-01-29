@@ -63,10 +63,11 @@ body
     //align-items: center
     
 .form
+    position: relative
     text-align: center
     flex-basis: 100px
     //flex: 1
-    padding-bottom: 30px
+    padding-bottom: 50px
     border-bottom: 1px solid lightgray
 
     form input[type=text]
@@ -88,6 +89,13 @@ body
 
     h1
         @extend %heading
+
+.error-message
+  position: absolute
+  top: 80%
+  left: 45%
+  color: $red
+
     
 .items-list
     background: $fafa

@@ -68,9 +68,10 @@ body {
 }
 
 .form {
+  position: relative;
   text-align: center;
   flex-basis: 100px;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   border-bottom: 1px solid lightgray;
 }
 .form form input[type=text] {
@@ -87,6 +88,13 @@ body {
 .form form button[type=submit]:hover {
   background: #f2f2f2;
 }
+.error-message {
+  position: absolute;
+  top: 80%;
+  left: 45%;
+  color: #c685a7;
+}
+
 .items-list {
   background: #FAFAFA;
   min-height: 300px;
