@@ -2,7 +2,7 @@
 // display absolute, componentas conditional jei state erroro tekstas ne tuscias 
 // projektai nepasinaikina, tik display : none 
 // display absolute, conditional 
-// display absolute, conditional 
+// display absolute, conditional. 
 import React, { Component } from "react";
 import "./App.css";
 import Projectsinput from "./components/Projectsinput";
