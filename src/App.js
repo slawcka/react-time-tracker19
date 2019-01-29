@@ -8,7 +8,8 @@ class App extends Component {
     this.state = {
       input: "",
       projects: [],
-      intervalID: ""
+      intervalID: "",
+      errorMessages:['to short','whoa, too long']
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,6 +19,7 @@ class App extends Component {
     this.archiveItem = this.archiveItem.bind(this);
     this.archiveElement = this.archiveElement.bind(this);
     this.addLocalStorage = this.addLocalStorage.bind(this);
+    this.validator = this.validator.bind(this);
   }
 
   handleChange(e) {
@@ -26,6 +28,10 @@ class App extends Component {
     });
   }
   handleSubmit(e) {
+    if (!this.validator()) {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
     let projects, array, id;
     projects = this.state.projects;
@@ -50,7 +56,10 @@ class App extends Component {
     });
     this.timer(id);
   }
-
+  validator() {
+    const { input } = this.state;
+    return input.length > 0 && input.length < 6;
+  }
   timer(id) {
     let seconds, items, item, intervalID;
 
@@ -171,7 +180,7 @@ class App extends Component {
                 toggleTimer={() => this.toggleTimer(e)}
                 archive={() => this.archiveElement(e)}
               />
-            ))} 
+            ))}
           </div>
         </div>
       </div>
